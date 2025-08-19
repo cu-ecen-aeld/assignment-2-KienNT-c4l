@@ -1,5 +1,5 @@
-# Compiler (native hoặc cross-compile)
-CC ?= $(CROSS_COMPILE)gcc
+# Compiler
+CC = $(CROSS_COMPILE)gcc
 
 # Output executable
 TARGET = writer
@@ -10,10 +10,12 @@ SRC = writer.c
 # Object files
 OBJ = $(SRC:.c=.o)
 
+.PHONY: all clean
+
 # Default target
 all: $(TARGET)
 
-# Link object -> executable
+# Build writer from object files
 $(TARGET): $(OBJ)
 	$(CC) -o $@ $^
 
