@@ -1,14 +1,17 @@
-# Compiler
-CC = $(CROSS_COMPILE)gcc
+# Compiler (add CROSS_COMPILE before gcc if set)
+CC := $(CROSS_COMPILE)gcc
+
+# Compiler flags
+CFLAGS := -Wall -Werror
 
 # Output executable
-TARGET = writer
+TARGET := writer
 
 # Source files
-SRC = writer.c
+SRC := writer.c
 
 # Object files
-OBJ = $(SRC:.c=.o)
+OBJ := $(SRC:.c=.o)
 
 .PHONY: all clean
 
@@ -17,11 +20,11 @@ all: $(TARGET)
 
 # Build writer from object files
 $(TARGET): $(OBJ)
-	$(CC) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^
 
 # Compile .c -> .o
 %.o: %.c
-	$(CC) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 # Clean build files
 clean:
